@@ -102,16 +102,6 @@ A aplicação:
 4. Impede repetição até que todos tenham sido usados
 5. Reseta automaticamente a pool quando necessário
 
----
-
-# 💡 Possíveis melhorias futuras
-
-* Escolher **modo ARAM**
-* Escolher **build aleatória**
-* Sistema de **ban de campeões**
-* Adicionar **mais jogadores**
-* Salvar histórico de partidas
-* Melhorar animação da roleta
 
 ---
 
