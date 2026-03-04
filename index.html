@@ -9,81 +9,64 @@
 <body>
   <div class="wrap">
     <h1>🎰 Roleta de Campeões (LoL)</h1>
-    <p class="sub">Digite os nicks, escolha a lane (ou qualquer) e gire. Sem repetir campeão.</p>
+    <p class="sub">Roleta com animação real, modo ARAM, bans, build aleatória e histórico.</p>
 
     <div class="card">
-      <div class="grid">
-  <label>
-    Seu nick
-    <div class="field">
-      <input id="nick1" placeholder="Ex: mauricio" autocomplete="off" />
-      <select id="lane1" class="laneSelect" title="Lane do jogador 1">
-        <option value="any">Any</option>
-        <option value="top">Top</option>
-        <option value="jungle">Jg</option>
-        <option value="mid">Mid</option>
-        <option value="adc">ADC</option>
-        <option value="support">Sup</option>
-      </select>
-    </div>
-  </label>
+      <div class="controls">
+        <label>
+          Jogadores
+          <select id="playerCount">
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </label>
 
-  <label>
-    Nick do amigo
-    <div class="field">
-      <input id="nick2" placeholder="Ex: mauricio1" autocomplete="off" />
-      <select id="lane2" class="laneSelect" title="Lane do jogador 2">
-        <option value="any">Any</option>
-        <option value="top">Top</option>
-        <option value="jungle">Jg</option>
-        <option value="mid">Mid</option>
-        <option value="adc">ADC</option>
-        <option value="support">Sup</option>
-      </select>
-    </div>
-  </label>
+        <label class="check">
+          <input type="checkbox" id="aramMode" />
+          Modo ARAM (ignora lane)
+        </label>
 
-  <label class="check">
-    <input type="checkbox" id="noRepeat" checked />
-    Não repetir campeões (global)
-  </label>
-</div>
+        <label class="check">
+          <input type="checkbox" id="noRepeat" checked />
+          Não repetir campeões (global)
+        </label>
+      </div>
+
+      <div id="playersContainer" class="players"></div>
+
+      <div class="bansBox">
+        <h2>Bans</h2>
+        <div class="banControls">
+          <input id="banInput" list="championSuggestions" placeholder="Buscar campeão para ban" autocomplete="off" />
+          <datalist id="championSuggestions"></datalist>
+          <button id="btnAddBan" class="secondary">Adicionar Ban</button>
+          <button id="btnResetBans" class="secondary">Resetar bans</button>
+        </div>
+        <div id="banList" class="banList"></div>
+      </div>
+
       <div class="actions">
-        <button id="btnSpin" disabled>Carregando campeões...</button>
+        <button id="btnSpin" disabled>Carregando dados...</button>
         <button id="btnAgain" class="secondary" disabled>Girar de novo</button>
         <button id="btnReset" class="secondary" disabled>Resetar “sem repetir”</button>
       </div>
 
       <div class="status" id="status"></div>
 
-      <div class="results" id="results" hidden>
-        <div class="result">
-          <div class="who" id="who1">Jogador 1</div>
-          <div class="champ">
-            <img id="img1" alt="" />
-            <div>
-              <div class="champName" id="champ1">—</div>
-              <div class="champTitle" id="title1">—</div>
-              <div class="chip" id="tags1">—</div>
-            </div>
-          </div>
-        </div>
+      <div class="results" id="results" hidden></div>
 
-        <div class="result">
-          <div class="who" id="who2">Jogador 2</div>
-          <div class="champ">
-            <img id="img2" alt="" />
-            <div>
-              <div class="champName" id="champ2">—</div>
-              <div class="champTitle" id="title2">—</div>
-              <div class="chip" id="tags2">—</div>
-            </div>
-          </div>
+      <div class="historyBox">
+        <div class="historyHead">
+          <h2>Histórico</h2>
+          <button id="btnClearHistory" class="secondary">Limpar histórico</button>
         </div>
+        <div id="historyList" class="historyList"></div>
       </div>
 
       <div class="tiny">
-        Se a pool da lane acabar (sem repetir), eu reseto automaticamente pra continuar girando.
+        Build inicial usa item.json do Data Dragon com filtros básicos (comprável, com custo e mapa permitido).
       </div>
     </div>
   </div>
